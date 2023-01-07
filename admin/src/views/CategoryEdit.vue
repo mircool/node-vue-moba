@@ -2,6 +2,16 @@
   <div>
     <h1>{{ id ? "编辑" : "新建" }}分类</h1>
     <el-form label-width="80px" @submit.native.prevent="save">
+      <el-form-item label="上级分类" prop="parent">
+        <el-select v-model="model.parent">
+          <el-option
+              v-for="item in parents"
+              :key="item._id"
+              :label="item.name"
+              :value="item._id"
+          ></el-option>
+        </el-select>
+      </el-form-item>
       <el-form-item label="名称" prop="name">
         <el-input v-model="model.name"></el-input>
       </el-form-item>
@@ -21,6 +31,8 @@ const model = ref({
   name: '',
 })
 
+const parents = ref([])
+
 const {proxy} = getCurrentInstance()  // 获取当前组件实例
 
 const save = async () => {
@@ -39,10 +51,18 @@ const fetch = async () => {
   model.value = res.data
 }
 
+const fetchParents = async () => {
+  const res = await proxy.$http.get('categories', {
+    params: {
+      per_page: 100
+    }
+  })
+  parents.value = res.data
+}
+
 onMounted(() => {
-  if (props.id) {
-    fetch()
-  }
+  fetchParents()  // 获取父级分类
+  props.id && fetch()  // 获取分类数据
 })
 </script>
 
