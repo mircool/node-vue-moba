@@ -6,6 +6,26 @@
       <el-form-item label="名称" prop="name">
         <el-input v-model="model.name"></el-input>
       </el-form-item>
+      <el-form-item label="称号" prop="title">
+        <el-input v-model="model.title"></el-input>
+      </el-form-item>
+      <el-form-item label="类型" prop="categories">
+        <el-select v-model="model.categories" multiple>
+          <el-option v-for="item of categories" :key="item._id" :label="item.name" :value="item._id"></el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="难度" prop="difficult">
+        <el-rate v-model="model.scores.difficult" :max="9"></el-rate>
+      </el-form-item>
+      <el-form-item label="技能" prop="skills">
+        <el-rate v-model="model.scores.skills" :max="9"></el-rate>
+      </el-form-item>
+      <el-form-item label="攻击" prop="attack">
+        <el-rate v-model="model.scores.attack" :max="9"></el-rate>
+      </el-form-item>
+      <el-form-item label="生存" prop="survive">
+        <el-rate v-model="model.scores.survive" :max="9"></el-rate>
+      </el-form-item>
       <el-form-item label="头像" prop="avatar">
         <el-upload
             class="avatar-uploader"
@@ -34,9 +54,33 @@ const props = defineProps(['id'])
 
 const model = ref({
   name: '',
-  avatar: ''
+  avatar: '',
+  title: '',
+  categories: [],
+  scores: {
+    difficult: 0,
+    skills: 0,
+    attack: 0,
+    survive: 0
+  },
+  skills: [{
+    icon: '',
+    name: '',
+    description: '',
+    tips: ''
+  }],
+  items1: [],
+  items2: [],
+  usageTips: '',
+  battleTips: '',
+  teamTips: '',
+  partners: [{
+    hero: '',
+    description: ''
+  }]
 })
 
+const categories = ref([])
 
 const {proxy} = getCurrentInstance()  // 获取当前组件实例
 
@@ -53,11 +97,18 @@ const save = async () => {
 // 获取数据
 const fetch = async () => {
   const res = await proxy.$http.get(`rest/heroes/${props.id}`)
-  model.value = res.data
+  model.value = Object.assign({}, model.value, res.data)  // 合并数据
+}
+
+//获取英雄分类
+const fetchCategories = async () => {
+  const res = await proxy.$http.get('rest/categories')
+  categories.value = res.data
 }
 
 onMounted(() => {
   props.id && fetch()  // 获取分类数据
+  fetchCategories()  // 获取英雄分类
 })
 
 const afterUpload = (res) => {
