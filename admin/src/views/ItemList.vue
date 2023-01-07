@@ -1,14 +1,13 @@
 <template>
   <div>
-    <h1>分类列表</h1>
+    <h1>物品列表</h1>
     <el-table :data="items">
       <el-table-column prop="_id" label="ID" width="240"/>
-      <el-table-column prop="parent.name" label="上级分类"/>
-      <el-table-column prop="name" label="分类名称"/>
+      <el-table-column prop="name" label="物品名称"/>
       <el-table-column fixed="right" label="操作" width="120">
         <template #default="scope">
           <el-button link type="primary" size="small"
-                     @click="$router.push(`/categories/edit/${scope.row._id}`)"
+                     @click="$router.push(`/items/edit/${scope.row._id}`)"
           >
             编辑
           </el-button>
@@ -31,7 +30,7 @@ const {proxy} = getCurrentInstance()  // 获取当前组件实例
 const items = ref([])
 
 const fetch = async () => {
-  const res = await proxy.$http.get('rest/categories')
+  const res = await proxy.$http.get('rest/items')
   items.value = res.data
 }
 
@@ -45,7 +44,7 @@ const remove = async (row) => {
     cancelButtonText: '取消',
     type: 'warning'
   }).then(async () => {
-    await proxy.$http.delete(`rest/categories/${row._id}`)  // 删除数据
+    await proxy.$http.delete(`rest/items/${row._id}`)  // 删除数据
     proxy.$message.success('删除成功')
     await fetch() // 重新获取数据
   })
