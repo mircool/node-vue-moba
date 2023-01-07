@@ -4,6 +4,7 @@ const port = 3000
 
 app.use(express.json()) // for parsing application/json
 app.use(require('cors')()) // for cross-domain requests
+app.use('/uploads', express.static(__dirname + '/uploads')) // for static files
 
 require('./plugins/db')(app)    // Connect to MongoDB
 require('./routes/admin')(app)  // Register routes

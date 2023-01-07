@@ -7,7 +7,17 @@
         <el-input v-model="model.name"></el-input>
       </el-form-item>
       <el-form-item label="图标" prop="ico">
-        <el-input v-model="model.ico"></el-input>
+        <el-upload
+            class="avatar-uploader"
+            :action="proxy.$http.defaults.baseURL + '/upload'"
+            :show-file-list="false"
+            :on-success="afterUpload"
+        >
+          <img v-if="model.icon" :src="model.icon" class="avatar"/>
+          <el-icon v-else class="avatar-uploader-icon">
+            <Plus/>
+          </el-icon>
+        </el-upload>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" native-type="submit">保存</el-button>
@@ -18,6 +28,7 @@
 
 <script setup>
 import {getCurrentInstance, onMounted, ref} from 'vue'
+import {Plus} from '@element-plus/icons-vue'
 
 const props = defineProps(['id'])
 
@@ -45,12 +56,42 @@ const fetch = async () => {
   model.value = res.data
 }
 
-
 onMounted(() => {
   props.id && fetch()  // 获取分类数据
 })
+
+const afterUpload = (res) => {
+  model.value.icon = res.url
+}
 </script>
 
 <style scoped>
+.avatar-uploader .avatar {
+  width: 80px;
+  height: 80px;
+  display: block;
+}
+</style>
 
+<style>
+.avatar-uploader .el-upload {
+  border: 1px dashed var(--el-border-color);
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: var(--el-transition-duration-fast);
+}
+
+.avatar-uploader .el-upload:hover {
+  border-color: var(--el-color-primary);
+}
+
+.el-icon.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+}
 </style>

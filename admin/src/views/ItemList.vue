@@ -4,17 +4,20 @@
     <el-table :data="items">
       <el-table-column prop="_id" label="ID" width="240"/>
       <el-table-column prop="name" label="物品名称"/>
+      <el-table-column prop="icon" label="图标">
+        <template #default="scope">
+          <img :src="scope.row.icon" style="width: 50px; height: 50px;" alt="scope.row.name"/>
+        </template>
+      </el-table-column>
       <el-table-column fixed="right" label="操作" width="120">
         <template #default="scope">
           <el-button link type="primary" size="small"
                      @click="$router.push(`/items/edit/${scope.row._id}`)"
-          >
-            编辑
+          >编辑
           </el-button>
           <el-button link type="danger" size="small"
                      @click="remove(scope.row)"
-          >
-            删除
+          > 删除
           </el-button>
         </template>
       </el-table-column>
