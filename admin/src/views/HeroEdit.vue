@@ -9,6 +9,19 @@
       <el-form-item label="称号" prop="title">
         <el-input v-model="model.title"></el-input>
       </el-form-item>
+      <el-form-item label="头像" prop="avatar">
+        <el-upload
+            class="avatar-uploader"
+            :action="proxy.$http.defaults.baseURL + '/uploads'"
+            :show-file-list="false"
+            :on-success="afterUpload"
+        >
+          <img v-if="model.avatar" :src="model.avatar" class="avatar"/>
+          <el-icon v-else class="avatar-uploader-icon">
+            <Plus/>
+          </el-icon>
+        </el-upload>
+      </el-form-item>
       <el-form-item label="类型" prop="categories">
         <el-select v-model="model.categories" multiple>
           <el-option v-for="item of categories" :key="item._id" :label="item.name" :value="item._id"></el-option>
@@ -26,19 +39,13 @@
       <el-form-item label="生存" prop="survive">
         <el-rate v-model="model.scores.survive" :max="9"></el-rate>
       </el-form-item>
-      <el-form-item label="头像" prop="avatar">
-        <el-upload
-            class="avatar-uploader"
-            :action="proxy.$http.defaults.baseURL + '/uploads'"
-            :show-file-list="false"
-            :on-success="afterUpload"
-        >
-          <img v-if="model.avatar" :src="model.avatar" class="avatar"/>
-          <el-icon v-else class="avatar-uploader-icon">
-            <Plus/>
-          </el-icon>
-        </el-upload>
+
+      <el-form-item label="顺风出装" prop="items1">
+        <el-select v-model="model.items1" multiple>
+          <el-option v-for="item of items" :key="item._id" :label="item.name" :value="item._id"></el-option>
+        </el-select>
       </el-form-item>
+
       <el-form-item>
         <el-button type="primary" native-type="submit">保存</el-button>
       </el-form-item>
@@ -81,6 +88,7 @@ const model = ref({
 })
 
 const categories = ref([])
+const items = ref([])
 
 const {proxy} = getCurrentInstance()  // 获取当前组件实例
 
@@ -106,9 +114,16 @@ const fetchCategories = async () => {
   categories.value = res.data
 }
 
+//获取装备列表
+const fetchItems = async () => {
+  const res = await proxy.$http.get('rest/items')
+  items.value = res.data
+}
+
 onMounted(() => {
   props.id && fetch()  // 获取分类数据
   fetchCategories()  // 获取英雄分类
+  fetchItems()  // 获取装备列表
 })
 
 const afterUpload = (res) => {

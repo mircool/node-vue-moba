@@ -1,11 +1,13 @@
 module.exports = app => {
     const express = require('express')
     const router = express.Router({mergeParams: true})
+
     //添加数据
     router.post('/', async (req, res) => {
         const model = await req.Model.create(req.body)   // req.body is the data sent from the client
         res.send(model)  // send the data back to the client
     })
+
     //获取列表
     router.get('/', async (req, res) => {
         const queryOptions = {}
