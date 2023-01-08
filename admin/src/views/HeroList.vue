@@ -3,8 +3,9 @@
     <h1>物品列表</h1>
     <el-table :data="items">
       <el-table-column prop="_id" label="ID" width="240"/>
-      <el-table-column prop="name" label="物品名称"/>
-      <el-table-column prop="icon" label="图标">
+      <el-table-column prop="name" label="英雄名称"/>
+      <el-table-column prop="title" label="英雄称号"/>
+      <el-table-column prop="icon" label="头像">
         <template #default="scope">
           <img :src="scope.row.avatar" style="width: 50px; height: 50px;" alt="scope.row.name"/>
         </template>
