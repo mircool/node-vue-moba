@@ -10,6 +10,9 @@ import ArticleEdit from "@/views/ArticleEdit.vue";
 import ArticleList from "@/views/ArticleList.vue";
 import AdEdit from "@/views/AdEdit.vue";
 import AdList from "@/views/AdList.vue";
+import AdminUserEdit from "@/views/AdminUserEdit.vue";
+import AdminUserList from "@/views/AdminUserList.vue";
+import Login from "@/views/Login.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,8 +37,12 @@ const router = createRouter({
                 {path: '/ads/create', component: AdEdit},
                 {path: '/ads/list', component: AdList},
                 {path: '/ads/edit/:id', component: AdEdit, props: true},
+                {path: '/admin_users/create', component: AdminUserEdit},
+                {path: '/admin_users/list', component: AdminUserList},
+                {path: '/admin_users/edit/:id', component: AdminUserEdit, props: true},
             ]
-        }
+        },
+        {path: '/login', name: 'login', component: Login},
     ]
 })
 

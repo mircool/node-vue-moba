@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+app.set('secret', 'sssss1zass2ddddss');   //设置加密字符串
+
 app.use(express.json()) // for parsing application/json
 app.use(require('cors')()) // for cross-domain requests
 app.use('/uploads', express.static(__dirname + '/uploads')) // for static files
