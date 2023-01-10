@@ -17,6 +17,7 @@ import Login from "@/views/Login.vue";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
+        {path: '/login', name: 'login', component: Login, meta: {isPublic: true}},
         {
             path: '/',
             name: 'main',
@@ -42,8 +43,15 @@ const router = createRouter({
                 {path: '/admin_users/edit/:id', component: AdminUserEdit, props: true},
             ]
         },
-        {path: '/login', name: 'login', component: Login},
+
     ]
+})
+
+router.beforeEach((to, from, next) => {
+    if (!to.meta.isPublic && !localStorage.token) {
+        return next('/login')
+    }
+    next()
 })
 
 export default router

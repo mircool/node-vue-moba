@@ -3,7 +3,10 @@ import {ElMessage} from 'element-plus'
 import router from './router'
 
 const http = axios.create({
-    baseURL: 'http://localhost:3000/admin/api'
+    baseURL: 'http://localhost:3000/admin/api',
+    headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('token') || ''
+    }
 })
 
 http.interceptors.request.use((config) => {

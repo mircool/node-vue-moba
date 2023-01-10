@@ -22,6 +22,7 @@
               <el-upload
                   class="avatar-uploader"
                   :action="proxy.$http.defaults.baseURL + '/uploads'"
+                  :headers="proxy.$http.defaults.headers"
                   :show-file-list="false"
                   :on-success="res=>item.image=res.url"
               >
