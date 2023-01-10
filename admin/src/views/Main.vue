@@ -79,6 +79,7 @@
             </template>
           </el-dropdown>
           <span>Tom</span>
+          <el-button type="text" size="small" @click="logout">退出</el-button>
         </div>
       </el-header>
 
@@ -92,15 +93,16 @@
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
-import {Menu as IconMenu, Message, Setting} from '@element-plus/icons-vue'
+import {getCurrentInstance} from 'vue'
+import {Message, Setting} from '@element-plus/icons-vue'
 
-const item = {
-  date: '2016-05-02',
-  name: 'Tom',
-  address: 'No. 189, Grove St, Los Angeles',
+const {proxy} = getCurrentInstance()  // 获取当前组件实例
+
+const logout = () => {
+  localStorage.removeItem('token')
+  proxy.$router.push('/login')
 }
-const tableData = ref(Array.from({length: 20}).fill(item))
+
 </script>
 
 <style scoped>
