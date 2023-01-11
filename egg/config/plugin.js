@@ -6,10 +6,12 @@ module.exports = {
     // static: {
     //   enable: true,
     // }
+    // mongoose插件
     mongoose: {
         enable: true,
         package: 'egg-mongoose',
     },
+    //验证插件
     validate: {
         enable: true,
         package: 'egg-validate',
