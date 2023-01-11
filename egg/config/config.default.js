@@ -6,22 +6,22 @@
  * @param {Egg.EggAppInfo} appInfo app info
  */
 module.exports = appInfo => {
-  /**
-   * built-in config
-   * @type {Egg.EggAppConfig}
-   **/
-  const config = exports = {};
+    /**
+     * built-in config
+     * @type {Egg.EggAppConfig}
+     **/
+    const config = exports = {};
 
-  // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + '_1673356386722_5381';
+    // use for cookie sign key, should change to your own and keep security
+    config.keys = appInfo.name + '_1673356386722_5381';
 
-  // add your middleware config here
-  config.middleware = [];
+    // add your middleware config here
+    config.middleware = [];
 
-  // add your user config here
-  const userConfig = {
-    // myAppName: 'egg',
-  };
+    // add your user config here
+    const userConfig = {
+        // myAppName: 'egg',
+    };
 
     config.mongoose = {
         client: {
@@ -30,8 +30,26 @@ module.exports = appInfo => {
         }
     }
 
-  return {
-    ...config,
-    ...userConfig,
-  };
+    config.security = {
+        csrf: {
+            enable: false,
+            ignoreJSON: true
+        },
+        domainWhiteList: ['*']
+    }
+    //jwt配置
+    config.jwt = {
+        secret: appInfo.name + '_1673356386722_5381',
+    }
+
+    //跨域配置
+    config.cors = {
+        origin: '*',
+        allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
+    }
+
+    return {
+        ...config,
+        ...userConfig,
+    };
 };

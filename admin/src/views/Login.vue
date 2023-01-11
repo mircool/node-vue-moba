@@ -30,7 +30,7 @@ const model = reactive({
 
 // 登录
 const login = async () => {
-  const res = await proxy.$http.post('login', model)
+  const res = await proxy.$http.post('admin/login', model)
   localStorage.token = res.data.token
   proxy.$router.push('/')
   ElMessage.success('登录成功')
