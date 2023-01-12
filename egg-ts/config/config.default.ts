@@ -29,12 +29,17 @@ export default (appInfo: EggAppInfo) => {
     config.jwt = {
         secret: '123456'
     }
+
     //cors
     config.cors = {
         origin: '*',
         allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
     }
 
+    //文件上传
+    config.multipart = {
+        mode: 'file',
+    }
 
     // add your special config in here
     const bizConfig = {

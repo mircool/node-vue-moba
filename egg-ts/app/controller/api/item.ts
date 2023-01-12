@@ -1,8 +1,33 @@
 import {Controller} from "egg";
 
 export default class ItemController extends Controller {
-    public async list() {
-        const {ctx} = this
+    //获取所有信息
+    public async index() {
+        const {ctx} = this;
+        ctx.body = await ctx.service.item.index();
+    }
 
+    //创建信息
+    public async create() {
+        const {ctx} = this;
+        ctx.body = await ctx.service.item.create(ctx.request.body);
+    }
+
+    //删除信息
+    public async destroy() {
+        const {ctx} = this;
+        ctx.body = await ctx.service.item.destroy(ctx.params.id);
+    }
+
+    //更新信息
+    public async update() {
+        const {ctx} = this;
+        ctx.body = await ctx.service.item.update(ctx.params.id, ctx.request.body);
+    }
+
+    //获取信息
+    public async show() {
+        const {ctx} = this;
+        ctx.body = await ctx.service.item.show(ctx.params.id);
     }
 }
