@@ -38,7 +38,7 @@ export default (appInfo: EggAppInfo) => {
 
     //文件上传
     config.multipart = {
-        mode: 'file',
+        mode: 'stream',
     }
 
     // add your special config in here

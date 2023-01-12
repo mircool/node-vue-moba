@@ -11,5 +11,5 @@ export default (app: Application) => {
     // router.put('/api/rest/items/:id', controller.api.item.update);  //更新信息
     // router.get('/api/rest/items/:id', controller.api.item.show);    //获取信息
     router.resources('items', '/api/rest/items', controller.api.item);    //资源路由
-    router.post('/api/uploads', controller.api.upload.index);    //文件上传
+    router.post('upload', '/api/upload', controller.api.upload.create);    //文件上传
 };

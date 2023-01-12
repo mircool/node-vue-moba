@@ -6,5 +6,6 @@ module.exports = {
     //生成token
     jwtSign(payload, secret) {
         return require('jsonwebtoken').sign(payload, secret);
-    }
+    },
+
 }
