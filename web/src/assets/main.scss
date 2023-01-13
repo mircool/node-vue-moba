@@ -1,0 +1,47 @@
+@import './base.css';
+//colors
+$colors: (
+        "primary": #db9e3f,
+        "white": #ffffff,
+        "black": #000000,
+        "dark":#222222,
+        "dark-1":#343440,
+        "grey": #999999,
+        "light":#f9f9f9,
+);
+
+//循环生成颜色类
+@each $name, $color in $colors {
+  .color-#{$name} {
+    color: $color;
+  }
+  .bg-#{$name} {
+    background-color: $color;
+  }
+}
+
+;
+
+//text
+@each $var in (left, center, right) {
+  .text-#{$var} {
+    text-align: $var;
+  }
+}
+
+;
+
+//font-size
+$base-font-size: 1rem;
+$font-sizes: (
+        xs: 0.7692, //10px
+        sm: 0.9231, //12px
+        md: 1, //13px
+        lg:1.077, //14px
+        xl:1.231 //16px
+);
+@each $name, $size in $font-sizes {
+  .font-#{$name} {
+    font-size: $base-font-size * $size;
+  }
+}
