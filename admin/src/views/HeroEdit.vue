@@ -15,7 +15,7 @@
           <el-form-item label="头像" prop="avatar">
             <el-upload
                 class="avatar-uploader"
-                :action="proxy.$http.defaults.baseURL + '/uploads'"
+                :action="proxy.$http.defaults.baseURL + '/upload'"
                 :headers="proxy.$http.defaults.headers"
                 :show-file-list="false"
                 :on-success="afterUpload"
@@ -84,7 +84,7 @@
               <el-form-item label="图标">
                 <el-upload
                     class="avatar-uploader"
-                    :action="proxy.$http.defaults.baseURL + '/uploads'"
+                    :action="proxy.$http.defaults.baseURL + '/upload'"
                     :headers="proxy.$http.defaults.headers"
                     :show-file-list="false"
                     :on-success="res=>item.icon=res.url"

@@ -7,5 +7,8 @@ module.exports = {
     jwtSign(payload, secret) {
         return require('jsonwebtoken').sign(payload, secret);
     },
-
+    //转换成类名
+    classify(str) {
+        return require('inflection').classify(str);
+    }
 }

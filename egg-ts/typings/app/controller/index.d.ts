@@ -4,7 +4,7 @@
 import 'egg';
 import ExportHome from '../../../app/controller/home';
 import ExportApiAdmin from '../../../app/controller/api/admin';
-import ExportApiItem from '../../../app/controller/api/item';
+import ExportApiModel from '../../../app/controller/api/model';
 import ExportApiUpload from '../../../app/controller/api/upload';
 
 declare module 'egg' {
@@ -12,7 +12,7 @@ declare module 'egg' {
     home: ExportHome;
     api: {
       admin: ExportApiAdmin;
-      item: ExportApiItem;
+      model: ExportApiModel;
       upload: ExportApiUpload;
     }
   }
