@@ -7,12 +7,13 @@ $colors: (
         "dark":#222222,
         "dark-1":#343440,
         "grey": #999999,
+        "grey-1": #666666,
         "light":#f9f9f9,
 );
 
 //循环生成颜色类
 @each $name, $color in $colors {
-  .color-#{$name} {
+  .text-#{$name} {
     color: $color;
   }
   .bg-#{$name} {
@@ -34,6 +35,7 @@ $colors: (
 //font-size
 $base-font-size: 1rem;
 $font-sizes: (
+        xxs:0.615,
         xs: 0.7692, //10px
         sm: 0.9231, //12px
         md: 1, //13px
@@ -41,7 +43,7 @@ $font-sizes: (
         xl:1.231 //16px
 );
 @each $name, $size in $font-sizes {
-  .font-#{$name} {
+  .fs-#{$name} {
     font-size: $base-font-size * $size;
   }
 }
@@ -114,6 +116,25 @@ $spacing-sizes: (0:0, 1:0.25, 2:0.5, 3:0.75, 4:1, 5:1.25, 6:1.5, 7:1.75, 8:2);
       .#{$typeKey}#{$directionKey}-#{$sizeKey} {
         #{$type}-#{$direction}: $size * $spacing-base-size;
       }
+    }
+  }
+}
+
+//button
+.btn {
+  border: none;
+  border-radius: 0.1538rem;
+  font-size: map-get($font-sizes, 'sm')*$base-font-size;
+  padding: 0.2rem 0.6rem;
+}
+
+.nav {
+  .nav-item {
+    border-bottom: 3px solid transparent;
+    padding-bottom: 0.2rem;
+
+    .active {
+      border-bottom: 3px solid #ffffff;
     }
   }
 }
