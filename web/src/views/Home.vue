@@ -1,21 +1,57 @@
 <template>
   <div>
-    <swiper :modules="modules" :pagination="{ clickable: true }">
-      <swiper-slide><img class="w-100" src="../assets/images/1e42ea88e7ac829acc41669d56acaca2.jpeg"></swiper-slide>
-      <swiper-slide><img class="w-100" src="../assets/images/25eef8c0fd73d190de7ea916fe104d3b.jpeg"></swiper-slide>
+    <swiper :modules="modules"
+            :pagination="{ clickable: true ,dynamicBullets: true} "
+            :autoplay="{delay: 2500, disableOnInteraction: false}"
+    >
       <swiper-slide><img class="w-100" src="../assets/images/03899df187197f7f03c8a36ae57febf7.jpeg"></swiper-slide>
+      <swiper-slide><img class="w-100" src="../assets/images/25eef8c0fd73d190de7ea916fe104d3b.jpeg"></swiper-slide>
+      <swiper-slide><img class="w-100" src="../assets/images/1e42ea88e7ac829acc41669d56acaca2.jpeg"></swiper-slide>
     </swiper>
+    <!--    end of swiper-->
+    <div class="nav-icons bg-white mt-3  text-center pt-3 text-dark-1">
+      <div class="d-flex flex-wrap">
+        <div class="nav-item mb-3" v-for="n in 10" :key="n">
+          <i class="sprite sprite-news"></i>
+          <div class="py-2">爆料站</div>
+        </div>
+      </div>
+      <div class="bg-light py-2 fs-sm">
+        <i class="sprite sprite-arrow mr-1"></i>
+        <span>收起</span>
+      </div>
+    </div>
+    <!--    end of nav-icons-->
+
   </div>
 </template>
 
 <script setup>
-import SwiperClass, {Pagination} from 'swiper'
+import SwiperClass, {Pagination, Autoplay} from 'swiper'
 import {Swiper, SwiperSlide} from 'vue-awesome-swiper'
-
-// import swiper module styles
 import 'swiper/css'
 import 'swiper/css/pagination'
-// more module style...
-const modules = [Pagination]
+
+import {Home} from '@icon-park/vue-next';
+
+const modules = [Pagination, Autoplay]
 
 </script>
+
+<style lang="scss">
+@import '../assets/scss/variables.scss';
+
+.nav-icons {
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
+
+  .nav-item {
+    width: 25%;
+    border-left: 1px solid $border-color;
+
+    &:nth-child(4n+1) {
+      border-left: none;
+    }
+  }
+}
+</style>
