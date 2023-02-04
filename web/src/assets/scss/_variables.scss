@@ -144,12 +144,25 @@ $spacing-sizes: (0:0, 1:0.25, 2:0.5, 3:0.75, 4:1, 5:1.25, 6:1.5, 7:1.75, 8:2);
 }
 
 .nav {
+  display: flex;
+  justify-content: space-around;
+
   .nav-item {
     border-bottom: 3px solid transparent;
     padding-bottom: 0.2rem;
 
-    .active {
-      border-bottom: 3px solid #ffffff;
+
+    &.active {
+      color: map-get($colors, 'primary');
+      border-bottom-color: map-get($colors, 'primary');
+    }
+  }
+  &.nav-inverse {
+    .nav-item {
+      color: map-get($colors, 'white');
+      &.active {
+        border-bottom-color: map-get($colors, 'white');
+      }
     }
   }
 }
