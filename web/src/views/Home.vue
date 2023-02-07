@@ -28,14 +28,19 @@
         <div class="fs-xl flex-1 px-2">新闻资讯</div>
         <more theme="outline" size="24" fill="#333"/>
       </div>
-      <div class="card-body">
-        <div class="nav">
+      <div class="card-body pt-3">
+        <div class="nav jc-between">
           <div class="nav-item active">热门</div>
           <div class="nav-item">新闻</div>
           <div class="nav-item">公告</div>
           <div class="nav-item">活动</div>
           <div class="nav-item">赛事</div>
         </div>
+        <swiper>
+          <swiper-slide>
+
+          </swiper-slide>
+        </swiper>
       </div>
     </div>
   </div>
