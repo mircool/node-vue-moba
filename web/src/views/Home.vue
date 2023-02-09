@@ -22,13 +22,8 @@
       </div>
     </div>
     <!--    end of nav-icons-->
-    <list-card title="" icon="" :categories="newsCats">
-      <div class="py-2" v-for="n in 5" :key="n">
-        <span>[新闻]</span>
-        <span>|</span>
-        <span>2月2日全服不停机更新公告</span>
-        <span>02/01</span>
-      </div>
+    <list-card title="新闻资讯" icon="menu" :categories="newsCats">
+
     </list-card>
     <card title="英雄列表" icon="menu">
     </card>
@@ -48,10 +43,52 @@ import 'swiper/css/pagination'
 import {Bill, More} from '@icon-park/vue-next';
 import Card from "../components/Card.vue";
 import ListCard from "../components/ListCard.vue";
+import {reactive} from "vue";
 
 const modules = [Pagination, Autoplay]
 
-const newsCats =
+const newsCats = reactive([
+  {
+    name: '热门',
+    newsList: new Array(5).fill(true).map(v => ({
+      categoryName: '公告',
+      title: '2月2日全服不停机更新公告',
+      date: '02/01'
+    }))
+  },
+  {
+    name: '新闻',
+    newsList: new Array(5).fill(true).map(v => ({
+      categoryName: '新闻',
+      title: '2月2日全服不停机更新公告',
+      date: '02/01'
+    }))
+  },
+  {
+    name: '公告',
+    newsList: new Array(5).fill(true).map(v => ({
+      categoryName: '公告',
+      title: '2月2日全服不停机更新公告',
+      date: '02/01'
+    }))
+  },
+  {
+    name: '活动',
+    newsList: new Array(5).fill(true).map(v => ({
+      categoryName: '活动',
+      title: '2月2日全服不停机更新公告',
+      date: '02/01'
+    }))
+  },
+  {
+    name: '赛事',
+    newsList: new Array(5).fill(true).map(v => ({
+      categoryName: '赛事',
+      title: '2月2日全服不停机更新公告',
+      date: '02/01'
+    }))
+  }
+])
 
 </script>
 
