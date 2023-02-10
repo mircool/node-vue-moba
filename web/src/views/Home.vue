@@ -23,7 +23,14 @@
     </div>
     <!--    end of nav-icons-->
     <list-card title="新闻资讯" icon="menu" :categories="newsCats">
-
+      <template #items="{category}">
+        <div class="py-2" v-for="(item,i) in category.newsList" :key="i">
+          <span>[{{ item.categoryName }}]</span>
+          <span>|</span>
+          <span>{{ item.title }}</span>
+          <span>{{ item.date }}</span>
+        </div>
+      </template>
     </list-card>
     <card title="英雄列表" icon="menu">
     </card>

@@ -85,7 +85,7 @@
 
       <el-main>
         <el-scrollbar>
-          <router-view/>
+          <router-view :key="$route.path"/>
         </el-scrollbar>
       </el-main>
     </el-container>

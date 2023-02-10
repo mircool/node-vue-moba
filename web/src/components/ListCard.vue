@@ -12,12 +12,7 @@
     <div class="mt-2">
       <swiper>
         <swiper-slide v-for="(category,index) in categories" :key="index">
-          <div class="py-2" v-for="(item,i) in category.newsList" :key="i">
-            <span>[{{item.categoryName}}]</span>
-            <span>|</span>
-            <span>{{item.title}}</span>
-            <span>{{ item.date}}</span>
-          </div>
+          <slot name="items" :category="category"></slot>
         </swiper-slide>
       </swiper>
     </div>
