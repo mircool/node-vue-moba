@@ -4,8 +4,12 @@ export default class Model extends Service {
     //获取所有信息
     public async index() {
         const {ctx} = this;
+        const queryOptions = {};
         const modelName = ctx.helper.classify(ctx.params.model);
-        return ctx.model[modelName].find().setOptions({populate: 'parent'});
+        if (modelName == 'Category') {
+            queryOptions['populate'] = 'parent';
+        }
+        return ctx.model[modelName].find().setOptions(queryOptions);
     }
 
     //创建信息
