@@ -5,7 +5,7 @@ export default class Model extends Service {
     public async index() {
         const {ctx} = this;
         const modelName = ctx.helper.classify(ctx.params.model);
-        return ctx.model[modelName].find();
+        return ctx.model[modelName].find().setOptions({populate: 'parent'});
     }
 
     //创建信息

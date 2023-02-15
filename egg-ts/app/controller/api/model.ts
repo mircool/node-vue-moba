@@ -4,7 +4,6 @@ export default class ModelController extends Controller {
     //获取所有信息
     public async index() {
         const {ctx} = this;
-        console.log("index:", ctx);
         ctx.body = await ctx.service.model.index();
     }
 
