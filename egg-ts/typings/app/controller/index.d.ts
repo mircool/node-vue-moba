@@ -6,6 +6,7 @@ import ExportHome from '../../../app/controller/home';
 import ExportApiAdmin from '../../../app/controller/api/admin';
 import ExportApiModel from '../../../app/controller/api/model';
 import ExportApiUpload from '../../../app/controller/api/upload';
+import ExportWebApiNews from '../../../app/controller/web/api/news';
 
 declare module 'egg' {
   interface IController {
@@ -14,6 +15,11 @@ declare module 'egg' {
       admin: ExportApiAdmin;
       model: ExportApiModel;
       upload: ExportApiUpload;
+    }
+    web: {
+      api: {
+        news: ExportWebApiNews;
+      }
     }
   }
 }

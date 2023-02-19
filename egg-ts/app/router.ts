@@ -7,4 +7,6 @@ export default (app: Application) => {
     router.post('/api/admin/login', controller.api.admin.login);    //登录
     router.post('upload', '/api/upload', controller.api.upload.create);    //文件上传
     router.resources('model', '/api/rest/:model', controller.api.model);    //资源路由
+
+    router.get('/web/api/news/list', controller.web.api.news.list);    //新闻列表
 };

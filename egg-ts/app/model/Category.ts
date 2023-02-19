@@ -8,5 +8,12 @@ module.exports = app => {
         updatedAt: {type: Date, default: Date.now}
     })
 
+    CategorySchema.virtual('children', {
+        localField: '_id',
+        foreignField: 'parent',
+        justOne: false,
+        ref: 'Category'
+    })
+
     return mongoose.model('Category', CategorySchema);
 }
