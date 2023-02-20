@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="mt-2">
-      <swiper>
+      <swiper ref="list" @slide-change="">
         <swiper-slide v-for="(category,index) in categories" :key="index">
           <slot name="items" :category="category"></slot>
         </swiper-slide>

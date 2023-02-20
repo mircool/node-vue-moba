@@ -24,11 +24,11 @@
     <!--    end of nav-icons-->
     <list-card title="新闻资讯" icon="menu" :categories="newsCats">
       <template #items="{category}">
-        <div class="py-2" v-for="(item,i) in category.newsList" :key="i">
-          <span>[{{ item.categoryName }}]</span>
-          <span>|</span>
-          <span>{{ item.title }}</span>
-          <span>{{ item.date }}</span>
+        <div class="py-2 fs-lg d-flex" v-for="(item,i) in category.newsList" :key="i">
+          <span class="text-info">[{{ item.categoryName }}]</span>
+          <span class="px-2">|</span>
+          <span class="flex-1 text-dark">{{ item.title }}</span>
+          <span>{{ item.createdAt }}</span>
         </div>
       </template>
     </list-card>
@@ -50,53 +50,27 @@ import 'swiper/css/pagination'
 import {Bill, More} from '@icon-park/vue-next';
 import Card from "../components/Card.vue";
 import ListCard from "../components/ListCard.vue";
-import {reactive} from "vue";
+import {computed, getCurrentInstance, onMounted, reactive} from "vue";
 
+const {proxy} = getCurrentInstance()  // 获取当前组件实例
 const modules = [Pagination, Autoplay]
+const newsCats = reactive([])
 
-const newsCats = reactive([
-  {
-    name: '热门',
-    newsList: new Array(5).fill(true).map(v => ({
-      categoryName: '公告',
-      title: '2月2日全服不停机更新公告',
-      date: '02/01'
-    }))
-  },
-  {
-    name: '新闻',
-    newsList: new Array(5).fill(true).map(v => ({
-      categoryName: '新闻',
-      title: '2月2日全服不停机更新公告',
-      date: '02/01'
-    }))
-  },
-  {
-    name: '公告',
-    newsList: new Array(5).fill(true).map(v => ({
-      categoryName: '公告',
-      title: '2月2日全服不停机更新公告',
-      date: '02/01'
-    }))
-  },
-  {
-    name: '活动',
-    newsList: new Array(5).fill(true).map(v => ({
-      categoryName: '活动',
-      title: '2月2日全服不停机更新公告',
-      date: '02/01'
-    }))
-  },
-  {
-    name: '赛事',
-    newsList: new Array(5).fill(true).map(v => ({
-      categoryName: '赛事',
-      title: '2月2日全服不停机更新公告',
-      date: '02/01'
-    }))
-  }
-])
+//获取新闻分类
+const getNewsCats = async () => {
+  const res = await proxy.$http.get('news/list')
+  newsCats.push(...res.data)
+}
 
+//计算属性 格式化日期
+const filters=computed(()=>{
+  //TODO 格式化日期
+})
+
+
+onMounted(async () => {
+  await getNewsCats()
+})
 </script>
 
 <style lang="scss">

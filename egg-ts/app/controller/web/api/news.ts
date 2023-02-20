@@ -35,9 +35,17 @@ export default class NewsController extends Controller {
                     categories: {$in: subCats}
                 }).sort({
                     click: -1
-                }).limit(5).lean()
+                }).populate('categories').limit(5).lean()
             }
         )
+
+        cats.map(cat => {
+            cat.newsList.map(news => {
+                news.categoryName = cat.name === '热门' ? news.categories[0].name : cat.name
+                return news
+            })
+            return cat
+        })
 
         ctx.body = cats
 
